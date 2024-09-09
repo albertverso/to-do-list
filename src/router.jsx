@@ -5,17 +5,33 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
+import CreateTask from "./pages/CreateTask";
+import EditTask from "./pages/EditTask";
+import { useEffect } from "react";
+import PageNotFound from "./pages/PageNotFound";
 
 export default function AppRouter() {
     const location = useLocation();
-    const hideHeaderFooter = location.pathname === "/Login"; 
+    const hideHeaderFooter = location.pathname === "/Login" || location.pathname === "/not-found"; 
+
+    function ScrollToTopOnRouteChange() {
+        const { pathname } = useLocation();
+      
+        useEffect(() => {
+          window.scrollTo(0, 0);
+        }, [pathname]);
+      
+        return null;
+      }
 
     return (
         <>
+            <ScrollToTopOnRouteChange/>
             {!hideHeaderFooter && <Header />}
             <Routes>
                 <Route path="/todo-list/" element={<Navigate to="/Login" />} />
                 <Route path="/" element={<Navigate to="/Login" />}></Route>
+                <Route path="*" element={<Navigate to="/not-found" />}></Route>
                 {/* <Route path="*" element={<PageNotFound></PageNotFound>} /> */}
                 <Route
                     path="/Login"
@@ -26,10 +42,35 @@ export default function AppRouter() {
                     }
                 />
                 <Route
+                    path="/not-found"
+                    element={
+                        <PublicRoute>
+                            <PageNotFound />
+                        </PublicRoute>
+                    }
+                />
+                <Route
                     path="/Home"
                     element={
                         <ProtectedRoute>
                             <Home/>
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/Criar-Tarefas"
+                    element={
+                        <ProtectedRoute>
+                            <CreateTask/>
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/Editar-Tarefas"
+                    element={
+                        <ProtectedRoute>
+                            <EditTask/>
                         </ProtectedRoute>
                     }
                 />

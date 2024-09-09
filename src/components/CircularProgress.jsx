@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
 
-const CircularProgress = () => {
-  const [progress, setProgress] = useState(20);
-
-  const updateProgress = () => {
-    setProgress((prev) => (prev >= 100 ? 0 : prev + 10));
-  };
+const CircularProgress = ({progress, stroke, radius}) => {
 
   // Cálculo do perímetro do círculo
-  const radius = 25;
-  const stroke = 5;
   const normalizedRadius = radius - stroke * 2;
   const circumference = normalizedRadius * 2 * Math.PI;
   const strokeDashoffset = circumference - (progress / 100) * circumference;

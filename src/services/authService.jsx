@@ -34,11 +34,11 @@ export const isAuthenticated = () => {
     return !!token; // Retorna true se o token existir
   };
 
-export const getEmailFromToken = () => {
+export const decodedFromToken = () => {
   const token = localStorage.getItem('token');
   if (token) {
     const decodedToken = jwtDecode(token);
-    return decodedToken.email; // Supondo que o email esteja no payload do token
+    return decodedToken.id
   }
   return null;
 };

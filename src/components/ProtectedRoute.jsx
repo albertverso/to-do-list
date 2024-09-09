@@ -5,7 +5,11 @@ import { isAuthenticated } from '../services/authService';
 const ProtectedRoute = ({ children }) => {
   const isAuth = isAuthenticated();
 
-  return isAuth ? children : <Navigate to="/Login" />;
+    if (!isAuth) {
+        return <Navigate to="/Login" />;
+    }
+
+    return children;
 };
 
 export default ProtectedRoute;

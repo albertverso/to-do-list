@@ -1,15 +1,39 @@
 import { HiHeart, HiOutlineHeart, HiOutlinePencilAlt } from "react-icons/hi";
 import CircularProgress from './CircularProgress';
 import { useState } from "react";
+import { format } from 'date-fns';
+import { useNavigate } from "react-router-dom";
+import { updateTask } from "../services/taskService";
 
-export default function Notes() {
-    const [fav, setFav] = useState(false)
+export default function Notes({favorite, description, title, createdAt, progress, id}) {
+    const [fav, setFav] = useState(favorite)
+    const navigate = useNavigate()
+    const token = localStorage.getItem('token');
+
+    const handleEditClick = (taskId) => {
+        // Armazena o ID da tarefa no localStorage
+        localStorage.setItem('taskId', taskId);
+        // Redireciona para a página de edição
+        navigate(`/Editar-Tarefas`); // Altere o caminho conforme sua rota
+    };
+
+    const handleFavoriteClick = async () => {
+        setFav(!fav); // Alterna o estado local
+
+        try {
+            await updateTask(id, { favorite: !fav }, token); // Atualiza no backend
+        } catch (error) {
+            console.error('Erro ao atualizar favorito:', error);
+            // Opcional: você pode reverter o estado local se a atualização falhar
+            setFav(fav); // Reverte para o estado anterior em caso de erro
+        }
+    };
 
     return (
         <div className="flex flex-col rounded-2xl bg-[#ab92bf] w-full min-h-96 p-8 overflow-hidden hover:shadow-2xl hover:scale-105 transition-transform duration-600">
             <div className="flex flex-row items-center justify-between">
-                <p className="text-3xl font-semibold">Programar</p>
-                <button className="outline-none hover:text-[#AFC1D6]" onClick={() => setFav(!fav)}>
+                <div className={`text-2xl font-semibold ${progress === 100 && 'line-through'}`}> {title} </div>
+                <button className="outline-none hover:text-[#AFC1D6]" onClick={handleFavoriteClick}>
                     {
                         fav ? 
                         <HiHeart size={30} className=""/>
@@ -18,19 +42,18 @@ export default function Notes() {
                     }
                 </button>
             </div>
-            <div className="text-xl px-2 mt-5 break-words">
+            <div className={`text-xl px-2 mt-5 break-words ${progress === 100 && 'line-through'}`} >
                 <p>
-                    sdfsdfsdfsdfsdfsdfsdfsdddddddddddddddddsdfsdfsdfsdfsdfsdfsdfnonowenfowenfokenmkfnl
-                    skdnflk
+                    {description}
                 </p>
             </div>
             <div className="flex flex-row mt-auto items-center justify-between ">
-                <CircularProgress/>
+                <CircularProgress progress={progress} stroke={5} radius={25} />
                 <div className="flex flex-col items-center">
-                    <p className="font-bold text-[#AFC1D6]">New!</p>
-                    <p className="font-semibold"> 12 Sep. 2024</p>
+                    <p className={`font-bold text-[#AFC1D6]`}> {progress <= 30 ? 'Novo!' : progress < 99 ? 'Em progresso!' : 'Finalizado!'}</p>
+                    <p className="font-semibold"> {format(new Date(createdAt), 'dd MMM. yyyy')}</p>
                 </div>
-                <button className=" outline-none hover:text-[#AFC1D6]">
+                <button className=" outline-none hover:text-[#AFC1D6]" onClick={() => handleEditClick(id)}>
                     <HiOutlinePencilAlt size={30}/>
                 </button>
             </div>

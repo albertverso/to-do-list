@@ -72,7 +72,7 @@ export default function Cover() {
                 <div className='w-full max-w-[300px] h-96 bg-[#f6e4eb] rounded-lg shadow-lg items-start break-word font-handwriting text-xl p-5 '>
                     <ReactTyped
                         className='text-xl 2xl:text-2xl break-words'
-                        strings={[" Todo List é uma ferramenta simples e eficaz para organizar suas tarefas diárias. Permite gerenciar atividades, acompanhar o progresso e manter o foco nas prioridades, ajudando você a ser mais produtivo a cada dia. <br/> <strong> <a href='https://github.com/albertverso'> Desenvolvido por Albertverso <a/> </strong> "]}
+                        strings={[" Todo List é uma ferramenta simples e eficaz para organizar suas tarefas diárias. Permite gerenciar atividades, acompanhar o progresso e manter o foco nas prioridades, ajudando você a ser mais produtivo a cada dia. <br/> <strong> <a href='https://github.com/albertverso' target='_blank'> Desenvolvido por Albertverso <a/> </strong> "]}
                         typeSpeed={30}
                         backSpeed={40}
                         backDelay={5000}
@@ -86,7 +86,7 @@ export default function Cover() {
             <div className="flex flex-col items-center justify-center gap-16">
                 <div className="">
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DateCalendar className="bg-[#dfc5d9] rounded-lg shadow-lg" />
+                        <DateCalendar className="bg-[#dfc5d9] rounded-lg shadow-lg " />
                     </LocalizationProvider>
                 </div>
                 <div>
