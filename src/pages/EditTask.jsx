@@ -26,7 +26,6 @@ export default function EditTask() {
                 setTitle(taskData.title);
                 setDescription(taskData.description);
                 setItemTasks(taskData.TaskItems); // Assumindo que `taskItems` é um array de objetos com a propriedade 'title'
-                console.log(taskData.TaskItems)
             } catch (error) {
                 setErrorMessage("Erro ao carregar dados da tarefa");
             } finally {
@@ -56,11 +55,9 @@ export default function EditTask() {
         if (itemId) {
             // Se há itemId, então faça a requisição DELETE
             try {
-                console.log('Tentando remover item:', itemId);
                 await deleteTaskItem(taskId, itemId, token);
             } catch (error) {
                 setErrorMessage('Erro ao remover item da tarefa');
-                console.error('Erro ao remover item:', error);
             }
         }
         
@@ -102,13 +99,13 @@ export default function EditTask() {
 
     return (
         <form onSubmit={handleUpdateTask} className="flex flex-col px-8 md:px-32 gap-5 mt-10 w-full">
-            <div className='flex flex-col gap-4 mb-10'>
+            <div className='flex flex-col gap-4'>
                 <div className='flex flex-col gap-4'>
                     <label className='font-bold'>Título *</label>
                     <input
                         className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md w-full'
                         type="text"
-                        placeholder="Nome"
+                        placeholder="Titulo"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         maxLength={20}
@@ -147,7 +144,6 @@ export default function EditTask() {
                             <button
                                 type="button"
                                 onClick={() => {handleRemoveItemTask(index, itemTask.id)
-                                    console.log('Remover item de tarefa:', itemTask.id); // Adicionando um log
                                 } }  // Passando o itemId aqui
                                 className="ml-2 text-red-500"
                             >

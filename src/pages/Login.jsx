@@ -5,7 +5,7 @@ import icon from '../assets/to-do-list.svg'
 import { authLogin, isAuthenticated } from '../services/authService';
 import { useLocation } from 'react-router-dom';
 import { BsArrowClockwise, BsEye, BsEyeSlash } from "react-icons/bs";
-import { createAccount } from "../services/createUserService";
+import { createAccount } from "../services/userService";
 import Cover from '../components/Cover';
 
 export default function Login() {

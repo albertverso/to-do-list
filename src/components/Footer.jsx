@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import icon from '../assets/to-do-list.png'
 import { SiGithub, SiInstagram, SiLinkedin } from 'react-icons/si';
 
@@ -13,10 +14,10 @@ export default function Footer() {
                 </div>
                 <div className='border-[#AFC1D6] border-t-2 border-b-2 lg:border-b-0 lg:border-t-0 lg:border-r-2 lg:border-l-2 pb-8 w-full md:px-20 xl:px-40'>
                     <div class="flex flex-col font-semibold items-center justify-center mt-10 gap-3">
-                        <a href="#home" class="hover:text-gray-400">Home</a>
-                        <a href="#account" class="hover:text-[#AFC1D6]">Conta</a>
-                        <a href="#tasks" class="hover:text-[#AFC1D6]">Tarefas</a>
-                        <a href="#fav" class="hover:text-[#AFC1D6]">Favoritos</a>
+                        <Link to={"/Home"} class="hover:text-gray-400">Home</Link>
+                        <Link to={"/Profile"} class="hover:text-[#AFC1D6]">Perfil</Link>
+                        <Link to={"/Criar-Tarefas"} class="hover:text-[#AFC1D6]">Nova tarefa</Link>
+                        <Link to={"/Favoritos"} class="hover:text-[#AFC1D6]">Favoritos</Link>
                     </div>
                 </div>
                 <div className='flex flex-row items-center gap-8'>

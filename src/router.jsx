@@ -9,6 +9,8 @@ import CreateTask from "./pages/CreateTask";
 import EditTask from "./pages/EditTask";
 import { useEffect } from "react";
 import PageNotFound from "./pages/PageNotFound";
+import Favorites from "./pages/Favorites";
+import Profile from "./pages/Profile";
 
 export default function AppRouter() {
     const location = useLocation();
@@ -71,6 +73,24 @@ export default function AppRouter() {
                     element={
                         <ProtectedRoute>
                             <EditTask/>
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/Favoritos"
+                    element={
+                        <ProtectedRoute>
+                            <Favorites/>
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/Profile"
+                    element={
+                        <ProtectedRoute>
+                            <Profile/>
                         </ProtectedRoute>
                     }
                 />

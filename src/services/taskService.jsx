@@ -11,7 +11,7 @@ export const getTask = async (taskId, token) => {
         });
 
         if (!response.ok) {
-            throw new Error('Erro ao buscar as tarefas');
+            throw new Error('Erro ao buscar tarefa');
         }
 
         const data = await response.json();
@@ -34,6 +34,28 @@ export const getAllTask = async (userId, token) => {
 
         if (!response.ok) {
             throw new Error('Erro ao buscar as tarefas');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Erro:', error);
+        throw error;
+    }
+};
+
+export const getFavoriteTask = async (userId, token) => {
+    try {
+        const response = await fetch(`${apiUrl}/v1/task/favorite/${userId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,  // Enviar o token no header
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao buscar tarefa');
         }
 
         const data = await response.json();

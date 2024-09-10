@@ -1,29 +1,22 @@
-import { HiOutlinePlusSm } from 'react-icons/hi';
 import Notes from '../components/Notes';
-import { getAllTask } from '../services/taskService';
+import { getFavoriteTask } from '../services/taskService';
 import SkeletonLoading from '../components/SkeletonLoading';
 import { useEffect, useState } from 'react';
 import { decodedFromToken } from '../services/authService';
-import { useNavigate } from 'react-router-dom';
 
-export default function Home() {
+export default function Favorites() {
 
     const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const navigate = useNavigate();
    
     const token = localStorage.getItem('token');
     const userId = decodedFromToken()
-
-    const handleClick = () => {
-        navigate("/Criar-Tarefas")
-    }
    
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const taskData = await getAllTask(userId, token);
+                const taskData = await getFavoriteTask(userId, token);
                 setTasks(taskData);
             } catch (error) {
                 setError('Erro ao buscar tarefas');
@@ -79,9 +72,6 @@ export default function Home() {
                         />
                     );
                 })}
-                <button onClick={handleClick} className='w-full min-h-96 outline-none bg-[#AFC1D6] flex items-center justify-center rounded-xl hover:shadow-2xl hover:scale-105 transition-transform duration-600'>
-                    <HiOutlinePlusSm size={40} />
-                </button>
             </section>
         </div>
     )

@@ -1,6 +1,6 @@
 import { HiHeart, HiOutlineHeart, HiOutlinePencilAlt } from "react-icons/hi";
 import CircularProgress from './CircularProgress';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { format } from 'date-fns';
 import { useNavigate } from "react-router-dom";
 import { updateTask } from "../services/taskService";
@@ -28,6 +28,22 @@ export default function Notes({favorite, description, title, createdAt, progress
             setFav(fav); // Reverte para o estado anterior em caso de erro
         }
     };
+
+    useEffect(() => {
+        const updateProgress = async () => {
+            try {
+                // Chama a função para atualizar o progresso no backend usando o taskId
+                await updateTask(id, { progress }, token); 
+            } catch (error) {
+                console.error("Erro ao atualizar o progresso:", error);
+            }
+        };
+
+        // Chama a função ao renderizar o componente
+        if (id) {
+            updateProgress();
+        }
+    }, [id, progress]); // Executa quando taskId ou progress mudar
 
     return (
         <div className="flex flex-col rounded-2xl bg-[#ab92bf] w-full min-h-96 p-8 overflow-hidden hover:shadow-2xl hover:scale-105 transition-transform duration-600">
