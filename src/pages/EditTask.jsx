@@ -5,7 +5,6 @@ import { getTask, updateTask, deleteTaskItem } from "../services/taskService"; /
 import { BsArrowClockwise } from "react-icons/bs";
 import { decodedFromToken } from './../services/authService';
 
-
 export default function EditTask() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -25,7 +24,7 @@ export default function EditTask() {
                 const taskData = await getTask(taskId, token); // Faz o GET na tarefa específica
                 setTitle(taskData.title);
                 setDescription(taskData.description);
-                setItemTasks(taskData.TaskItems); // Assumindo que `taskItems` é um array de objetos com a propriedade 'title'
+                setItemTasks(taskData.TaskItems || [{ title: '', status: false }]); // Garante que pelo menos um item esteja presente
             } catch (error) {
                 setErrorMessage("Erro ao carregar dados da tarefa");
             } finally {
@@ -33,16 +32,11 @@ export default function EditTask() {
             }
         };
 
-
         fetchTaskData();
-    }, [taskId, token]); // Executa a requisição quando o componente é montado
+    }, [taskId, token]);
 
     const handleAddItemTask = () => {
-        if (!Array.isArray(itemTasks)) {
-            setItemTasks([{ title: '' }]);  // Garante que seja um array
-        } else {
-            setItemTasks([...itemTasks, { title: '' }]);
-        }
+        setItemTasks([...itemTasks, { title: '', status: false }]);
     };
 
     const handleInputChange = (index, e) => {
@@ -52,6 +46,11 @@ export default function EditTask() {
     };
 
     const handleRemoveItemTask = async (index, itemId) => {
+        if (itemTasks.length === 1) {
+            setErrorMessage('A tarefa deve conter pelo menos um item.');
+            return;
+        }
+
         if (itemId) {
             // Se há itemId, então faça a requisição DELETE
             try {
@@ -60,7 +59,7 @@ export default function EditTask() {
                 setErrorMessage('Erro ao remover item da tarefa');
             }
         }
-        
+
         // Remover o item da lista visualmente
         const newItemTasks = itemTasks.filter((_, i) => i !== index);
         setItemTasks(newItemTasks);
@@ -72,9 +71,9 @@ export default function EditTask() {
         setLoading(true);
 
         const updatedTask = {
-            title: title,
-            description: description,
-            userId: userId,
+            title,
+            description,
+            userId,
             taskItems: itemTasks   // Array de objetos com title
         };
 
@@ -126,11 +125,11 @@ export default function EditTask() {
                 <div className='flex flex-col gap-4'>
                     <label className='font-bold'>Itens da tarefa *</label>
                     {itemTasks.map((itemTask, index) => (
-                        <div key={itemTask.id || index} className="flex flex-row">
+                        <div key={itemTask.id || index} className="flex flex-row items-center mb-2">
                             <input
                                 type="checkbox"
                                 checked={itemTask.status || false} // Valor inicial como false se não definido
-                                onChange={(e) => { handleCheckboxChange(index, e.target.checked)}} // Passa o index e o novo valor
+                                onChange={(e) => { handleCheckboxChange(index, e.target.checked) }} // Passa o index e o novo valor
                                 className="mr-2" // Margem à direita
                             />
                             <input
@@ -141,14 +140,15 @@ export default function EditTask() {
                                 onChange={(e) => handleInputChange(index, e)}
                                 required
                             />
-                            <button
-                                type="button"
-                                onClick={() => {handleRemoveItemTask(index, itemTask.id)
-                                } }  // Passando o itemId aqui
-                                className="ml-2 text-red-500"
-                            >
-                                <IoCloseSharp size={20} />
-                            </button>
+                            {itemTasks.length > 1 && (
+                                <button
+                                    type="button"
+                                    onClick={() => handleRemoveItemTask(index, itemTask.id)}
+                                    className="ml-2 text-red-500"
+                                >
+                                    <IoCloseSharp size={20} />
+                                </button>
+                            )}
                         </div>
                     ))}
 

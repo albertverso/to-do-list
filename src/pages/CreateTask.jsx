@@ -11,28 +11,35 @@ export default function CreateTask() {
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const [itemTasks, setItemTasks] = useState([{ title: '' }]); // Inicia com um itemTask vazio
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const token = localStorage.getItem('token');
     const userId = decodedFromToken();
 
     const handleAddItemTask = () => {
         setItemTasks([...itemTasks, { title: '' }]); // Adicionando um novo objeto com title vazio
     };
-    
+
     const handleInputChange = (index, e) => {
         const newItemTasks = [...itemTasks];
         newItemTasks[index].title = e.target.value; // Atualizando a propriedade title
         setItemTasks(newItemTasks);
     };
 
-    // Remove um input de itemTask
+    // Remove um input de itemTask, mas mantém pelo menos um
     const handleRemoveItemTask = (index) => {
-        const newItemTasks = itemTasks.filter((_, i) => i !== index);
-        setItemTasks(newItemTasks); // Remove o itemTask do array
+        if (itemTasks.length > 1) {
+            const newItemTasks = itemTasks.filter((_, i) => i !== index);
+            setItemTasks(newItemTasks); // Remove o itemTask do array
+        }
     };
 
     const handleCreateTask = async (e) => {
         e.preventDefault();
+        if (itemTasks.length < 1 || itemTasks.some(item => item.title.trim() === '')) {
+            setErrorMessage("A tarefa precisa ter pelo menos um item com título.");
+            return;
+        }
+
         setLoading(true);
     
         const newTask = {
@@ -47,11 +54,10 @@ export default function CreateTask() {
             navigate("/Home");
         } catch (error) {
             setErrorMessage(error.message);
-        }finally {
+        } finally {
             setLoading(false);
         }
     };
-    
 
     return (
         <form onSubmit={handleCreateTask} className="flex flex-col px-8 md:px-32 gap-5 mt-10 w-full">
@@ -59,7 +65,7 @@ export default function CreateTask() {
                 <div className='flex flex-col gap-4'>
                     <label className='font-bold'>Título *</label>
                     <input
-                        className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md w-full' // Adicionado w-full
+                        className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md w-full'
                         type="text"
                         placeholder="Nome"
                         value={title}
@@ -71,7 +77,7 @@ export default function CreateTask() {
                 <div className='flex flex-col gap-4'>
                     <label className='font-bold'>Descrição *</label>
                     <textarea
-                        className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md w-full' // Adicionado w-full
+                        className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md w-full'
                         placeholder="Descrição"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
@@ -82,7 +88,7 @@ export default function CreateTask() {
                 <div className='flex flex-col gap-4'>
                     <label className='font-bold'>Itens da tarefa *</label>
                     {itemTasks.map((itemTask, index) => (
-                        <div key={index} className="flex flex-row">
+                        <div key={index} className="flex flex-row items-center">
                             <input
                                 className='focus:outline-[#ab92bf] w-full text-black bg-slate-200 p-2 rounded-md'
                                 type="text"
@@ -91,13 +97,15 @@ export default function CreateTask() {
                                 onChange={(e) => handleInputChange(index, e)}
                                 required
                             />
-                            <button
-                                type="button"
-                                onClick={() => handleRemoveItemTask(index)}
-                                className="ml-2 text-red-500"
-                            >
-                                <IoCloseSharp size={20} />
-                            </button>
+                            {itemTasks.length > 1 && (
+                                <button
+                                    type="button"
+                                    onClick={() => handleRemoveItemTask(index)}
+                                    className="ml-2 text-red-500"
+                                >
+                                    <IoCloseSharp size={20} />
+                                </button>
+                            )}
                         </div>
                     ))}
                     <div className="flex justify-center">
@@ -131,5 +139,5 @@ export default function CreateTask() {
             </div>
             {errorMessage && <p className='mt-5 text-[#ab92bf] text-lg text-center animate-pulse'>{errorMessage}</p>}
         </form>
-    )
+    );
 }
