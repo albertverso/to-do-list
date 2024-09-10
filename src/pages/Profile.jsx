@@ -104,7 +104,6 @@ export default function Profile() {
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (file) {
-            console.log("Imagem selecionada:", file);
             setProfilePic(file);
 
             // Cria a URL da imagem selecionada
@@ -121,7 +120,7 @@ export default function Profile() {
 
     return (
         <form onSubmit={handleUpdateUser} className="flex flex-col px-8 md:px-32 gap-5 mt-10 w-full">
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 mb-10'>
+            <div className='flex flex-col lg:grid lg:grid-cols-2 gap-4 mb-10'>
                 <div className='flex flex-col gap-4 justify-center items-center col-span-2'>
                     <section className='flex flex-row rounded-3xl h-full px-2 py-4 gap-10 '>
                         <div className='w-32 h-32 bg-white rounded-full relative flex items-center justify-center'>
@@ -224,7 +223,7 @@ export default function Profile() {
                     </div>
                 </div>
             </div>
-            <div className='flex flex-col items-center justify-center font-semibold relative col-span-2'>
+            <div className='flex flex-col items-center justify-center font-semibold relative lg:col-span-2'>
                     <p>Total de tarefas concluidas!</p>
                     <CircularProgress progress={completedPercentage} stroke={10} radius={100} />
                     <img src={images[imageIndex]} alt={`Progresso: ${completedPercentage}%`} width={70} className="absolute" />

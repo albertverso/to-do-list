@@ -27,8 +27,6 @@ const Sidebar = () => {
 
   useEffect(() => {
 
-    console.log(user)
-
     const fetchUser = async () => {
       try {
           const userData = await getUser(userId, token);
