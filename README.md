@@ -1,8 +1,99 @@
-# React + Vite
+## To-Do List
+  Este é um projeto de lista de tarefas (to-do list) desenvolvido com React e Vite, estilizado com Tailwind CSS.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Índice
+  - Demonstração
+  - Tecnologias Utilizadas
+  - Instalação e Execução
+  - Funcionalidades
+  - Estrutura do Projeto
+  - Contribuindo
+  - Licença
+  
+#Demonstração
 
-Currently, two official plugins are available:
+ - https://to-do-list-ashy-five-92.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#Tecnologias Utilizadas
+
+  - React: Biblioteca JavaScript para criar interfaces de usuário.
+  - Vite: Ferramenta de build para desenvolvimento rápido com React.
+  - Tailwind CSS: Framework utilitário para estilização de componentes.
+  - JavaScript (ES6+): Para a lógica do projeto.
+  - Dontenv: Para criarmos configurações com mais facilidade e segurança.
+  - ReactRouter Dom: Para criar rotas para acessar as paginas no projeto.
+  - JWT Decode: Para decodificar o token do usuário
+
+#Instalação
+  - Instalação e Execução
+  - Siga os passos abaixo para rodar o projeto localmente:
+  - Clone o repositório:
+    ````
+    git clone https://github.com/albertverso/to-do-list.git
+    ````
+  - Acesse o diretório do projeto:
+    ````
+    cd to-do-list
+    ````
+  - Instale as dependências:
+    ````
+    npm install
+    ````
+  - Rode o projeto localmente:
+    ````
+    npm run dev
+    ````
+  - Acesse o projeto em seu navegador:
+    ````
+    http://localhost:3000
+    ````
+  
+#Funcionalidades:
+  - Login e criar conta
+  - Personalizar perfil do usuário
+  - Adicionar novas tarefas
+  - Adicionar itens a essa terefa
+  - Marcar os itens como concluídas
+  - Marcar como favoritas as tarefas
+
+## Interface responsiva com Tailwind CSS
+
+## Estrutura do Projeto
+````
+to-do-list/
+  ├── public/
+  ├── src/
+  |   ├── assets/
+  │   ├── components/
+  |   |   └── Footer.jsx
+  |   |   └── Header.jsx
+  |   |   └── Notes.jsx
+  |   |   └── Sidebar.jsx
+  |   |   └── SkeletonLoading.jsx
+  |   ├── pages/
+  |   |   └── Home.jsx
+  |   |   └── Login.jsx
+  |   |   └── Profile.jsx        
+  |   ├── services/
+  |   |   └── apiService.jsx
+  |   |   └── authService.jsx
+  |   ├── styles/
+  │   ├── App.js
+  │   ├── Router.jsx
+  │   └── main.jsx
+  ├── tailwind.config.js
+  ├── package.json
+  └── README.md
+````
+
+- components/: Contém os componentes reutilizáveis.
+- assets/: Contém imagens do projeto.
+- pages/: Contém as paginas.
+- styles/: css customizavel.
+- services/: Contém as requisições que vem do back-end
+
+## Contribuindo
+ - Contribuições são sempre bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
+
+## Licença
+ - Este projeto está licenciado sob a MIT License.
