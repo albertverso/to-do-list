@@ -34,7 +34,6 @@ const Sidebar = () => {
       } catch (error) {
           setError('Erro ao buscar tarefas');
       } finally {
-          setLoading(false);
       }
     };
 

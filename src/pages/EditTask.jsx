@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { IoAddCircle, IoCloseSharp } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
-import { getTask, updateTask, deleteTaskItem } from "../services/taskService"; // Adicione a função de busca e atualização
+import { getTask, updateTask, deleteTaskItem, deleteTask } from "../services/taskService"; // Adicione a função de busca e atualização
 import { BsArrowClockwise } from "react-icons/bs";
 import { decodedFromToken } from './../services/authService';
+import { HiTrash } from "react-icons/hi";
 
 export default function EditTask() {
     const [title, setTitle] = useState('');
@@ -96,6 +97,23 @@ export default function EditTask() {
         setItemTasks(updatedItemTasks); // Atualiza o estado
     };
 
+    const handleDelete= async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        
+        if (taskId) {
+            // Se há taskId, então faça a requisição DELETE
+            try {
+                await deleteTask(taskId, token);
+                navigate("/Home")
+            } catch (error) {
+                setErrorMessage('Erro ao remover tarefa');
+            }finally {
+            setLoading(false);
+        }
+        }
+    };
+
     return (
         <form onSubmit={handleUpdateTask} className="flex flex-col px-8 md:px-32 gap-5 mt-10 w-full">
             <div className='flex flex-col gap-4'>
@@ -163,7 +181,7 @@ export default function EditTask() {
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center gap-8">
                 <button
                     type='submit'
                     disabled={loading}
@@ -177,6 +195,26 @@ export default function EditTask() {
                        
                     ) : (
                         'Salvar Tarefa'
+                    )}
+                </button>
+                <button
+                    onClick={handleDelete}
+                    disabled={loading}
+                    className={`w-full md:max-w-[200px] flex items-center justify-center mt-5 bg-[#ab92bf] rounded-md p-2 font-bold text-white hover:bg-[#655a7c] ${loading && 'cursor-not-allowed bg-[#655a7c]'}`}
+                >
+                    {loading ? (
+                        
+                        <div className="animate-spin text-light mr-3">
+                            <BsArrowClockwise size={20}/>
+                        </div>
+                       
+                    ) : (
+                        
+                        <div className="flex flex-row gap-2 items-center justify-center">
+                            <p>Excluir</p>
+                            <HiTrash />
+                        </div> 
+                            
                     )}
                 </button>
             </div>

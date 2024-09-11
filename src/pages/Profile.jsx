@@ -66,8 +66,10 @@ export default function Profile() {
                 const completedTasks = data.filter(task => task.progress === 100);
                 // Calcular a porcentagem de tasks concluídas
                 const percentage = (completedTasks.length / data.length) * 100;
+                // Arredonda para a casa dos 10 mais próximos
+                const roundedPercentage = Math.round(percentage / 10) * 10;
                 // Armazenar o valor da porcentagem no estado
-                setCompletedPercentage(percentage);
+                setCompletedPercentage(roundedPercentage);
             } catch (error) {
                 setError('Erro ao buscar tarefas');
             } finally {

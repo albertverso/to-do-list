@@ -16,7 +16,7 @@ export default function Footer() {
                     <div class="flex flex-col font-semibold items-center justify-center mt-10 gap-3">
                         <Link to={"/Home"} class="hover:text-gray-400">Home</Link>
                         <Link to={"/Profile"} class="hover:text-[#AFC1D6]">Perfil</Link>
-                        <Link to={"/Criar-Tarefas"} class="hover:text-[#AFC1D6]">Nova tarefa</Link>
+                        <Link to={"/Criar-Tarefas"} class="hover:text-[#AFC1D6]">Criar tarefa</Link>
                         <Link to={"/Favoritos"} class="hover:text-[#AFC1D6]">Favoritos</Link>
                     </div>
                 </div>

@@ -128,3 +128,25 @@ export const deleteTaskItem = async (taskId, itemId, token) => {
         throw error;
     }
 };
+
+export const deleteTask = async (taskId, token) => {
+    try {
+        const response = await fetch(`${apiUrl}/v1/task/${taskId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao deletar tarefa');
+        }
+
+        return await response.json(); // Se precisar de algum dado de resposta
+    } catch (error) {
+        console.error('Erro ao deletar tarefa:', error);
+        throw error;
+    }
+};
+ 
