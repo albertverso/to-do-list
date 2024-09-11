@@ -13,7 +13,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [passwordRepite, setPasswordRepite] = useState('');
     const [name, setName] = useState('');
-    
+
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
@@ -43,22 +43,22 @@ export default function Login() {
     const handleCreateAccount = async (event) => {
         event.preventDefault();
         setLoading(true);
-    
+
         const nameParts = name.trim().split(' ');
         const firstName = nameParts[0];
         const lastName = nameParts.slice(1).join(' ');
-    
+
         // Verifica se as senhas são iguais
         if (password !== passwordRepite) {
             setErrorMessage('Senhas diferentes! Tente Novamente');
             setLoading(false);
             return; // Interrompe o processo se as senhas não forem iguais
         }
-    
+
         try {
             const userData = { firstName, lastName, email, password };
             await createAccount(userData); // Tenta criar o usuário
-    
+
             // Se a conta for criada com sucesso, redireciona para a página de login
             try {
                 const data = await authLogin(email, password);
@@ -80,17 +80,17 @@ export default function Login() {
             setLoading(false);
         }
     };
-    
+
 
     return (
         <body class="flex lg:h-screen items-center justify-center ">
             <div className="w-10/12 h-full p-5 bg-white hidden xl:flex">
                 {/* <img className="w-full h-full rounded-[40px] p-5" src={image} alt="" /> */}
-                < Cover/>
+                < Cover />
             </div>
             <div class="xl:w-3/12 h-full flex flex-col items-center pt-5 break-normal mb-5 lg:mb-0" >
                 <div className='flex items-center mb-2'>
-                    <img src={icon} alt="" width={70}/>
+                    <img src={icon} alt="" width={70} />
                 </div>
                 <div className='flex flex-col gap-5'>
                     <p className='text-3xl font-bold'>{!isSighUp ? 'Acesse sua conta' : 'Crie sua conta'}</p>
@@ -125,48 +125,52 @@ export default function Login() {
                                 <div className='flex flex-col gap-2'>
                                     <label className='font-bold'>Senha *</label>
                                     <div className='flex flex-row w-full items-center bg-slate-200 border-2 focus-within:border-[#ab92bf] focus-within:text-[#ab92bf] rounded-md'>
-                                        <input 
-                                            className='w-full outline-none text-black bg-slate-200 p-2 rounded-md' 
-                                            type={showPassword ? 'text' : 'password'} 
+                                        <input
+                                            className='w-full outline-none text-black bg-slate-200 p-2 rounded-md'
+                                            type={showPassword ? 'text' : 'password'}
                                             placeholder="Senha"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
-                                            required 
-                                            style={{ WebkitAppearance: "none", MozAppearance: "none", appearance: "none" }} 
+                                            required
+                                            style={{ WebkitAppearance: "none", MozAppearance: "none", appearance: "none" }}
                                         />
-                                         {
+                                        {
                                             showPassword ?
-                                                <BsEye size={22} className='mr-5 cursor-pointer' onClick={() => setShowPassword(false)}/>
-                                            : 
-                                                <BsEyeSlash size={22} className='mr-5 cursor-pointer' onClick={() => setShowPassword(true)}/>
+                                                <BsEye size={22} className='mr-5 cursor-pointer' onClick={() => setShowPassword(false)} />
+                                                :
+                                                <BsEyeSlash size={22} className='mr-5 cursor-pointer' onClick={() => setShowPassword(true)} />
                                         }
                                     </div>
                                 </div>
                                 <div className='flex flex-col gap-2'>
                                     <label className='font-bold'>Repita sua senha *</label>
                                     <div className='flex flex-row w-full items-center bg-slate-200 border-2 focus-within:border-[#ab92bf] focus-within:text-[#ab92bf] rounded-md'>
-                                        <input 
-                                            className='w-full outline-none text-black bg-slate-200 p-2 rounded-md' 
-                                            type={showPassword ? 'text' : 'password'} 
+                                        <input
+                                            className='w-full outline-none text-black bg-slate-200 p-2 rounded-md'
+                                            type={showPassword ? 'text' : 'password'}
                                             placeholder="Repita sua senha"
                                             value={passwordRepite}
                                             onChange={(e) => setPasswordRepite(e.target.value)}
-                                            required 
-                                            style={{ WebkitAppearance: "none", MozAppearance: "none", appearance: "none" }} 
+                                            required
+                                            style={{ WebkitAppearance: "none", MozAppearance: "none", appearance: "none" }}
                                         />
-                                         {
+                                        {
                                             showPasswordRepite ?
-                                                <BsEye size={22} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(false)}/>
-                                            : 
-                                                <BsEyeSlash size={22} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(true)}/>
+                                                <BsEye size={22} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(false)} />
+                                                :
+                                                <BsEyeSlash size={22} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(true)} />
                                         }
                                     </div>
                                 </div>
                             </div>
-                            <button type='submit' disabled={loading} className={`w-full mt-5 bg-[#ab92bf] rounded-md p-2 font-bold text-white hover:bg-[#655a7c] ${loading && 'cursor-not-allowed bg-[#655a7c]'}`}>
+                            <button
+                                type='submit'
+                                disabled={loading}
+                                className={`w-full mt-5 bg-[#ab92bf] rounded-md p-2 font-bold text-white hover:bg-[#655a7c] ${loading ? 'cursor-not-allowed bg-[#655a7c]' : ''}`}
+                            >
                                 {loading ? (
-                                    <div className="animate-spin text-light mr-3">
-                                        <BsArrowClockwise size={20}/>
+                                    <div className="flex items-center justify-center">
+                                        <BsArrowClockwise className="animate-spin" size={20} />
                                     </div>
                                 ) : (
                                     'Criar Conta'
@@ -198,7 +202,7 @@ export default function Login() {
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
                                             required
-                                            style={{ WebkitAppearance: "none", MozAppearance: "none", appearance: "none" }} 
+                                            style={{ WebkitAppearance: "none", MozAppearance: "none", appearance: "none" }}
                                         />
                                         {
                                             showPassword ?
@@ -210,10 +214,14 @@ export default function Login() {
                                 </div>
                             </div>
                             <a href="" className='underline'>Esqueci minha senha</a>
-                            <button type='submit' disabled={loading} className={`w-full mt-5 bg-[#ab92bf] rounded-md p-2 font-bold text-white hover:bg-[#655a7c] ${loading && 'cursor-not-allowed bg-[#655a7c]'}`}>
+                            <button
+                                type='submit'
+                                disabled={loading}
+                                className={`w-full mt-5 bg-[#ab92bf] rounded-md p-2 font-bold text-white hover:bg-[#655a7c] ${loading ? 'cursor-not-allowed bg-[#655a7c]' : ''}`}
+                            >
                                 {loading ? (
-                                    <div className="animate-spin text-light mr-3">
-                                        <BsArrowClockwise  size={20}/>
+                                    <div className="flex items-center justify-center">
+                                        <BsArrowClockwise className="animate-spin" size={20} />
                                     </div>
                                 ) : (
                                     'Acessar Conta'
