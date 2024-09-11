@@ -147,7 +147,7 @@ export default function Login() {
                                     <div className='flex flex-row w-full items-center bg-slate-200 border-2 focus-within:border-[#ab92bf] focus-within:text-[#ab92bf] rounded-md'>
                                         <input
                                             className='w-full outline-none text-black bg-slate-200 p-2 rounded-md'
-                                            type={showPassword ? 'text' : 'password'}
+                                            type={showPasswordRepite ? 'text' : 'password'}
                                             placeholder="Repita sua senha"
                                             value={passwordRepite}
                                             onChange={(e) => setPasswordRepite(e.target.value)}
@@ -176,7 +176,7 @@ export default function Login() {
                                     'Criar Conta'
                                 )}
                             </button>
-                            {errorMessage && <p className='mt-5 text-[#ab92bf] text-lg text-center animate-pulse'>{errorMessage}</p>}
+                            {errorMessage && <p className='text-[#655a7c] font-semibold text-lg text-center animate-pulse'>{errorMessage}</p>}
                         </form>
                         :
                         <form onSubmit={handleLogin}>

@@ -218,7 +218,7 @@ export default function EditTask() {
                     )}
                 </button>
             </div>
-            {errorMessage && <p className='mt-5 text-[#ab92bf] text-lg text-center animate-pulse'>{errorMessage}</p>}
+            {errorMessage && <p className='text-[#655a7c] font-semibold text-lg text-center animate-pulse'>{errorMessage}</p>}
         </form>
     );
 }

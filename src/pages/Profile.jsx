@@ -85,16 +85,26 @@ export default function Profile() {
 
     const handleUpdateUser = async (e) => {
         e.preventDefault();
-        setLoading(true);
+        
+        // Resetando o erro anterior, se existir
+        setErrorMessage('');
     
-        // Criação do FormData contendo todos os campos
+        // Verificando se as senhas correspondem
+        if (password !== passwordRepite) {
+            setErrorMessage("As senhas não correspondem!");
+            return;
+        }
+    
+        // Se as senhas correspondem, continuar com o envio
+        setLoading(true);
         const formData = new FormData();
+    
+        formData.append('password', password);
         formData.append('firstName', firstName);
         formData.append('lastName', lastName);
-        formData.append('profilePic', profilePic);  // Certifique-se de que a chave seja 'file', ou o que seu backend espera
+        formData.append('profilePic', profilePic);
     
         try {
-            // Envia o FormData diretamente
             await updateUser(userId, formData, token);
             navigate("/Home");
         } catch (error) {
@@ -103,6 +113,7 @@ export default function Profile() {
             setLoading(false);
         }
     };
+    
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -213,7 +224,7 @@ export default function Profile() {
                     <div className='flex flex-row w-full items-center bg-slate-200 border-2 focus-within:border-[#ab92bf] focus-within:text-[#ab92bf] rounded-md'>
                         <input
                             className='w-full outline-none text-black bg-slate-200 p-2 rounded-md'
-                            type={showPassword ? 'text' : 'password'}
+                            type={showPasswordRepite ? 'text' : 'password'}
                             placeholder="Repita sua senha"
                             value={passwordRepite}
                             onChange={(e) => setPasswordRepite(e.target.value)}
@@ -249,7 +260,7 @@ export default function Profile() {
                     )}
                 </button>
             </div>
-            {errorMessage && <p className='mt-5 text-[#ab92bf] text-lg text-center animate-pulse'>{errorMessage}</p>}
+            {errorMessage && <p className='text-[#655a7c] font-semibold text-lg text-center animate-pulse'>{errorMessage}</p>}
 
         </form>
     );
