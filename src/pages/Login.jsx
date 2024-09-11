@@ -20,6 +20,7 @@ export default function Login() {
     const location = useLocation();
     const [isSighUp, setIsSighUp] = useState(false || location.state?.loginRequested);
     const [showPassword, setShowPassword] = useState(false);
+    const [showPasswordRepite, setShowPasswordRepite] = useState(false);
 
     const handleLogin = async (event) => {
         event.preventDefault();
@@ -87,8 +88,8 @@ export default function Login() {
                 {/* <img className="w-full h-full rounded-[40px] p-5" src={image} alt="" /> */}
                 < Cover/>
             </div>
-            <div class="xl:w-3/12 h-full flex flex-col items-center pt-14 break-normal" >
-                <div className='flex items-center mb-5'>
+            <div class="xl:w-3/12 h-full flex flex-col items-center pt-5 break-normal mb-5 lg:mb-0" >
+                <div className='flex items-center mb-2'>
                     <img src={icon} alt="" width={70}/>
                 </div>
                 <div className='flex flex-col gap-5'>
@@ -99,7 +100,7 @@ export default function Login() {
                     {isSighUp ?
                         <form onSubmit={handleCreateAccount}>
                             <div className='flex flex-col gap-4 mb-5'>
-                                <div className='flex flex-col gap-4'>
+                                <div className='flex flex-col gap-2'>
                                     <label className='font-bold'>Nome *</label>
                                     <input
                                         className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md'
@@ -110,7 +111,7 @@ export default function Login() {
                                         required
                                     />
                                 </div>
-                                <div className='flex flex-col gap-4'>
+                                <div className='flex flex-col gap-2'>
                                     <label className='font-bold'>Email *</label>
                                     <input
                                         className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md'
@@ -121,7 +122,7 @@ export default function Login() {
                                         required
                                     />
                                 </div>
-                                <div className='flex flex-col gap-4'>
+                                <div className='flex flex-col gap-2'>
                                     <label className='font-bold'>Senha *</label>
                                     <div className='flex flex-row w-full items-center bg-slate-200 border-2 focus-within:border-[#ab92bf] focus-within:text-[#ab92bf] rounded-md'>
                                         <input 
@@ -131,6 +132,7 @@ export default function Login() {
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
                                             required 
+                                            style={{ WebkitAppearance: "none", MozAppearance: "none", appearance: "none" }} 
                                         />
                                          {
                                             showPassword ?
@@ -140,7 +142,7 @@ export default function Login() {
                                         }
                                     </div>
                                 </div>
-                                <div className='flex flex-col gap-4'>
+                                <div className='flex flex-col gap-2'>
                                     <label className='font-bold'>Repita sua senha *</label>
                                     <div className='flex flex-row w-full items-center bg-slate-200 border-2 focus-within:border-[#ab92bf] focus-within:text-[#ab92bf] rounded-md'>
                                         <input 
@@ -150,24 +152,22 @@ export default function Login() {
                                             value={passwordRepite}
                                             onChange={(e) => setPasswordRepite(e.target.value)}
                                             required 
+                                            style={{ WebkitAppearance: "none", MozAppearance: "none", appearance: "none" }} 
                                         />
                                          {
-                                            showPassword ?
-                                                <BsEye size={22} className='mr-5 cursor-pointer' onClick={() => setShowPassword(false)}/>
+                                            showPasswordRepite ?
+                                                <BsEye size={22} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(false)}/>
                                             : 
-                                                <BsEyeSlash size={22} className='mr-5 cursor-pointer' onClick={() => setShowPassword(true)}/>
+                                                <BsEyeSlash size={22} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(true)}/>
                                         }
                                     </div>
                                 </div>
                             </div>
                             <button type='submit' disabled={loading} className={`w-full mt-5 bg-[#ab92bf] rounded-md p-2 font-bold text-white hover:bg-[#655a7c] ${loading && 'cursor-not-allowed bg-[#655a7c]'}`}>
                                 {loading ? (
-                                    <span className="flex items-center text-light justify-center">
-                                        <div className="animate-spin text-light mr-3">
-                                            <BsArrowClockwise />
-                                        </div>
-                                        Carregando...
-                                    </span>
+                                    <div className="animate-spin text-light mr-3">
+                                        <BsArrowClockwise size={20}/>
+                                    </div>
                                 ) : (
                                     'Criar Conta'
                                 )}
@@ -177,7 +177,7 @@ export default function Login() {
                         :
                         <form onSubmit={handleLogin}>
                             <div className='flex flex-col gap-4 mb-5'>
-                                <div className='flex flex-col gap-4'>
+                                <div className='flex flex-col gap-2'>
                                     <label className='font-bold'>Login *</label>
                                     <input
                                         className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md'
@@ -188,7 +188,7 @@ export default function Login() {
                                         required
                                     />
                                 </div>
-                                <div className='flex flex-col gap-4'>
+                                <div className='flex flex-col gap-2'>
                                     <label className='font-bold'>Senha *</label>
                                     <div className='flex flex-row w-full items-center bg-slate-200 border-2 focus-within:border-[#ab92bf] focus-within:text-[#ab92bf] rounded-md'>
                                         <input
@@ -198,6 +198,7 @@ export default function Login() {
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
                                             required
+                                            style={{ WebkitAppearance: "none", MozAppearance: "none", appearance: "none" }} 
                                         />
                                         {
                                             showPassword ?
@@ -211,12 +212,9 @@ export default function Login() {
                             <a href="" className='underline'>Esqueci minha senha</a>
                             <button type='submit' disabled={loading} className={`w-full mt-5 bg-[#ab92bf] rounded-md p-2 font-bold text-white hover:bg-[#655a7c] ${loading && 'cursor-not-allowed bg-[#655a7c]'}`}>
                                 {loading ? (
-                                    <span className="flex items-center text-light justify-center">
-                                        <div className="animate-spin text-light mr-3">
-                                            <BsArrowClockwise />
-                                        </div>
-                                        Carregando...
-                                    </span>
+                                    <div className="animate-spin text-light mr-3">
+                                        <BsArrowClockwise  size={20}/>
+                                    </div>
                                 ) : (
                                     'Acessar Conta'
                                 )}

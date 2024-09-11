@@ -126,12 +126,9 @@ export default function CreateTask() {
                     className={`w-full md:max-w-[200px] flex items-center justify-center mt-5 bg-[#ab92bf] rounded-md p-2 font-bold text-white hover:bg-[#655a7c] ${loading && 'cursor-not-allowed bg-[#655a7c]'}`}
                 >
                     {loading ? (
-                        <span className="flex items-center text-light justify-center">
-                            <div className="animate-spin text-light mr-3">
-                                <BsArrowClockwise />
-                            </div>
-                            Carregando...
-                        </span>
+                        <div className="animate-spin text-light mr-3">
+                            <BsArrowClockwise size={20}/>
+                        </div>
                     ) : (
                         'Criar Tarefa'
                     )}

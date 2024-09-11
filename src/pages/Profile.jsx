@@ -34,6 +34,7 @@ export default function Profile() {
     const token = localStorage.getItem('token');
     const userId = decodedFromToken();
     const [showPassword, setShowPassword] = useState(false);
+    const [showPasswordRepite, setShowPasswordRepite] = useState(false);
     const [completedPercentage, setCompletedPercentage] = useState(0);
 
     const images = [img0,img10, img20, img30, img40, img50, img60, img70, img80, img90, img100];
@@ -195,6 +196,7 @@ export default function Profile() {
                             placeholder="Senha"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            style={{ WebkitAppearance: "none", MozAppearance: "none", appearance: "none" }} 
                         />
                         {
                             showPassword ?
@@ -213,12 +215,13 @@ export default function Profile() {
                             placeholder="Repita sua senha"
                             value={passwordRepite}
                             onChange={(e) => setPasswordRepite(e.target.value)}
+                            style={{ WebkitAppearance: "none", MozAppearance: "none", appearance: "none" }} 
                         />
                         {
-                            showPassword ?
-                                <BsEye size={22} className='mr-5 cursor-pointer' onClick={() => setShowPassword(false)} />
+                            showPasswordRepite ?
+                                <BsEye size={22} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(false)} />
                                 :
-                                <BsEyeSlash size={22} className='mr-5 cursor-pointer' onClick={() => setShowPassword(true)} />
+                                <BsEyeSlash size={22} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(true)} />
                         }
                     </div>
                 </div>
@@ -235,12 +238,10 @@ export default function Profile() {
                     className={`w-full md:max-w-[200px] flex items-center justify-center mt-5 bg-[#ab92bf] rounded-md p-2 font-bold text-white hover:bg-[#655a7c] ${loading && 'cursor-not-allowed bg-[#655a7c]'}`}
                 >
                     {loading ? (
-                        <span className="flex items-center text-light justify-center">
-                            <div className="animate-spin text-light mr-3">
-                                <BsArrowClockwise />
-                            </div>
-                            Carregando...
-                        </span>
+                   
+                        <div className="animate-spin text-light mr-3">
+                            <BsArrowClockwise size={20} />
+                        </div>
                     ) : (
                         'Salvar'
                     )}
