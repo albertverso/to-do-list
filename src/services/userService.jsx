@@ -1,12 +1,29 @@
 import apiUrl from "./apiService";
 
-export const createAccount = async (userData) => {
+export const createAccountGoogle = async (userData) => {
+
     const response = await fetch(apiUrl+'/v1/user', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(userData),
+    });
+
+    if (response.status === 201) {
+        return await response.json();
+    } else {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Erro ao criar usuário');
+    }
+}
+
+
+export const createAccount = async (userData) => {
+    
+    const response = await fetch(apiUrl+'/v1/user', {
+        method: 'POST',
+        body: userData, // FormData já ajusta o Content-Type para multipart/form-data
     });
 
     if (response.status === 201) {
@@ -34,7 +51,6 @@ export const getUser = async (userId, token) => {
         const data = await response.json();
         return data;
     } catch (error) {
-        console.error('Erro:', error);
         throw error;
     }
 };
@@ -55,7 +71,6 @@ export const updateUser = async (userId, data, token) => {
 
         return await response.json(); // Retorna a resposta em JSON
     } catch (error) {
-        console.error('Erro:', error);
         throw error;
     }
 };
