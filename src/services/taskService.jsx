@@ -17,7 +17,6 @@ export const getTask = async (taskId, token) => {
         const data = await response.json();
         return data;
     } catch (error) {
-        console.error('Erro:', error);
         throw error;
     }
 };
@@ -39,7 +38,7 @@ export const getAllTask = async (userId, token) => {
         const data = await response.json();
         return data;
     } catch (error) {
-        console.error('Erro:', error);
+       
         throw error;
     }
 };
@@ -61,7 +60,6 @@ export const getFavoriteTask = async (userId, token) => {
         const data = await response.json();
         return data;
     } catch (error) {
-        console.error('Erro:', error);
         throw error;
     }
 };
@@ -124,7 +122,6 @@ export const deleteTaskItem = async (taskId, itemId, token) => {
 
         return await response.json(); // Se precisar de algum dado de resposta
     } catch (error) {
-        console.error('Erro ao deletar item da tarefa:', error);
         throw error;
     }
 };
@@ -145,7 +142,6 @@ export const deleteTask = async (taskId, token) => {
 
         return await response.json(); // Se precisar de algum dado de resposta
     } catch (error) {
-        console.error('Erro ao deletar tarefa:', error);
         throw error;
     }
 };

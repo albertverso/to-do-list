@@ -20,7 +20,7 @@ export default function AppRouter() {
         const { pathname } = useLocation();
       
         useEffect(() => {
-          window.scrollTo(0, 0);
+            window.scrollTo(0, 0);
         }, [pathname]);
       
         return null;
@@ -39,7 +39,7 @@ export default function AppRouter() {
                     path="/Login"
                     element={
                         <PublicRoute>
-                            <Login />
+                                <Login />
                         </PublicRoute>
                     }
                 />

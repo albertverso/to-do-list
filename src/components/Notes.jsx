@@ -23,9 +23,9 @@ export default function Notes({favorite, description, title, createdAt, progress
         try {
             await updateTask(id, { favorite: !fav }, token); // Atualiza no backend
         } catch (error) {
-            console.error('Erro ao atualizar favorito:', error);
             // Opcional: você pode reverter o estado local se a atualização falhar
-            setFav(fav); // Reverte para o estado anterior em caso de erro
+            setFav(fav);
+            throw error;
         }
     };
 
@@ -35,7 +35,7 @@ export default function Notes({favorite, description, title, createdAt, progress
                 // Chama a função para atualizar o progresso no backend usando o taskId
                 await updateTask(id, { progress }, token); 
             } catch (error) {
-                console.error("Erro ao atualizar o progresso:", error);
+                throw error;
             }
         };
 
