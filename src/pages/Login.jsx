@@ -11,6 +11,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import blank from '../assets/fundo.png'
 import { TbUpload } from 'react-icons/tb';
+import '../styles/index.css'
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -144,12 +145,12 @@ export default function Login() {
     };
 
     return (
-        <body class="flex lg:h-screen items-center justify-center ">
+        <body class="flex items-center justify-center min-h-screen max-md:bg-gradiente-login overflow-hidden lg:bg-white">
             <div className="w-10/12 h-full p-5 bg-white hidden xl:flex">
                 {/* <img className="w-full h-full rounded-[40px] p-5" src={image} alt="" /> */}
                 < Cover />
             </div>
-            <div class="xl:w-3/12 h-full flex flex-col items-center pt-2 break-normal mb-5 lg:mb-0" >
+            <div class="xl:w-3/12 pt-10 lg:mt-0 h-full flex flex-col items-center lg:pt-2 break-normal mb-5 lg:mb-0" >
                 {!isSighUp &&
                     <div className='flex items-center mb-2'>
                         <img src={icon} alt="" width={70} />
@@ -157,7 +158,7 @@ export default function Login() {
                 }
                 <div className='flex flex-col items-center justify-center gap-2'>
                     <p className='text-3xl font-bold'>{!isSighUp ? 'Acesse sua conta' : 'Crie sua conta'}</p>
-                    <p>{!isSighUp ? 'Novo cliente? Então registre-se' : 'Já possui uma conta? Entre'} <a onClick={() => setIsSighUp(!isSighUp)} className=' underline cursor-pointer hover:text-[#ab92bf]' >aqui.</a></p>
+                    <p>{!isSighUp ? 'Novo cliente? Então registre-se' : 'Já possui uma conta? Entre'} <a onClick={() => setIsSighUp(!isSighUp)} className=' underline cursor-pointer' >aqui.</a></p>
                 </div>
                 <div class="flex mt-5">
                     {isSighUp ?
