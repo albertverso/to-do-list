@@ -10,7 +10,7 @@ export default function Home() {
 
     const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate();
    
     const token = localStorage.getItem('token');
@@ -26,7 +26,7 @@ export default function Home() {
                 const taskData = await getAllTask(userId, token);
                 setTasks(taskData);
             } catch (error) {
-                setError('Erro ao buscar tarefas');
+                setErrorMessage('Adicione Tarefas!');
             } finally {
                 setLoading(false);
             }
@@ -60,10 +60,11 @@ export default function Home() {
     
 
     if (loading) return SkeletonLoading()
-    if (error) return <div>Erro: {error}</div>;
+   
 
     return (
         <div>
+            { errorMessage && <div className='mt-5 text-[#655a7c] text-lg font-semibold text-center'>{errorMessage}</div>}
             <section className='px-8 md:px-32 gap-5 mt-10 justify-items-center grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 mb-10'>
             {tasks.map(task => {
                     const percentage = calculateCompletionPercentage(task.id); // Calculando a porcentagem para cada task

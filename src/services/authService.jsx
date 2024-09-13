@@ -2,37 +2,36 @@ import apiUrl from "./apiService";
 import { jwtDecode } from "jwt-decode";
 
 export const authLogin = async (email, password) => {
-    try {
-      const response = await fetch(apiUrl+'/v1/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-  
-      const data = await response.json();
-  
-      if (response.status === 200) {
-        // Armazene o token no localStorage
-        localStorage.setItem('token', data.token);
-        return data;
-      } else if (response.status === 404) {
-        throw new Error(response.message || 'Usuário não existe!');
-      } else if (response.status === 401) {
-        throw new Error(response.message || 'Usuário ou senha incorreta! Tente novamente');
-      }
-    } catch (error) {
-      console.error('Erro na requisição de login:', error);
-      throw error;
+  try {
+    const response = await fetch(apiUrl + '/v1/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.status === 200) {
+      // Armazene o token no localStorage
+      localStorage.setItem('token', data.token);
+      return data;
+    } else if (response.status === 404) {
+      throw new Error(response.message || 'Usuário não existe!');
+    } else if (response.status === 401) {
+      throw new Error(response.message || 'Usuário ou senha incorreta! Tente novamente');
     }
-  };
-  
-  // Função para verificar se o usuário está autenticado
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Função para verificar se o usuário está autenticado
 export const isAuthenticated = () => {
-    const token = localStorage.getItem('token');
-    return !!token; // Retorna true se o token existir
-  };
+  const token = localStorage.getItem('token');
+  return !!token; // Retorna true se o token existir
+};
 
 export const decodedFromToken = () => {
   const token = localStorage.getItem('token');
@@ -42,11 +41,11 @@ export const decodedFromToken = () => {
   }
   return null;
 };
-  
-  // Função para logout
+
+// Função para logout
 export const logout = () => {
-    localStorage.removeItem('token');
-  };
+  localStorage.removeItem('token');
+};
 
 export const isTokenExpired = () => {
   const token = localStorage.getItem('token');
@@ -56,4 +55,25 @@ export const isTokenExpired = () => {
     return decodedToken.exp < currentTime; // Retorna true se o token expirou
   }
   return true; // Se não há token, considere como expirado
+};
+
+export const getWakeUp = async () => {
+  try {
+    const response = await fetch(`${apiUrl}/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    // Verifique se a resposta foi bem-sucedida
+    if (!response.ok) {
+      throw new Error('Erro ao chamar a API'); // Mensagem de erro mais específica
+    }
+
+    const data = await response.text();
+    return data; // Retorna o resultado, que deve ser um JSON, certifique-se de que é uma string
+  } catch (error) {
+    throw error; // Re-lança o erro para tratamento posterior
+  }
 };

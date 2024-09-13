@@ -115,153 +115,155 @@ export default function Profile() {
     };
     
 
-    const handleImageUpload = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setProfilePic(file);
+const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+        setProfilePic(file);
 
-            // Cria a URL da imagem selecionada
-            const url = URL.createObjectURL(file);
-            setProfilePicUrl(url);
+        // Cria a URL da imagem selecionada
+        const url = URL.createObjectURL(file);
+        setProfilePicUrl(url);
 
-            // Limpa a URL quando o componente for desmontado
-            return () => URL.revokeObjectURL(url);
-        }
-    };
+        // Limpa a URL quando o componente for desmontado
+        return () => URL.revokeObjectURL(url);
+    }
+};
 
 // Calcular qual imagem deve ser exibida (de 0 a 10, representando de 0% a 100%)
-  const imageIndex = Math.floor(completedPercentage / 10); // Divide por 10 e arredonda para baixo
+const imageIndex = Math.floor(completedPercentage / 10); // Divide por 10 e arredonda para baixo
 
-    return (
-        <form onSubmit={handleUpdateUser} className="flex flex-col px-8 md:px-32 gap-5 mt-10 w-full">
-            <div className='flex flex-col lg:grid lg:grid-cols-2 gap-4 mb-10'>
-                <div className='flex flex-col gap-4 justify-center items-center col-span-2'>
-                    <section className='flex flex-row rounded-3xl h-full px-2 py-4 gap-10 '>
-                        <div className='w-32 h-32 bg-white rounded-full relative flex items-center justify-center'>
-                            {profilePicUrl ? (
-                                <img
-                                    src={profilePicUrl}
-                                    alt="Perfil"
-                                    className="absolute inset-0 w-full h-full rounded-full object-cover"
-                                />
-                            ) : (
-                                <img
-                                    src={blank}
-                                    alt="Perfil"
-                                    className="absolute inset-0 w-full h-full rounded-full object-cover"
-                                />
-                            )}
-                            <label className="absolute left-24 top-20 bg-[#ab92bf] z-10 rounded-full p-2 font-bold text-white hover:bg-[#655a7c] cursor-pointer">
-                                <TbUpload size={20} className="z-10" />
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    className="hidden z-10"
-                                    onChange={handleImageUpload}
-                                />
-                            </label>
-                        </div>
-
-                    </section>
-                </div>
-                <div className='flex flex-col gap-4'>
-                    <label className='font-bold'>Nome*</label>
-                    <input
-                        className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md w-full'
-                        type="text"
-                        placeholder="Nome"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        maxLength={20}
-                        required
-                    />
-                </div>
-                <div className='flex flex-col gap-4'>
-                    <label className='font-bold'>Sobrenome*</label>
-                    <input
-                        className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md w-full'
-                        type="text"
-                        placeholder="Sobrenome"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        maxLength={20}
-                        required
-                    />
-                </div>
-                <div className='flex flex-col gap-4 col-span-1 lg:col-span-2'>
-                    <label className='font-bold'>Email*</label>
-                    <input
-                        className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md w-full cursor-not-allowed'
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        maxLength={20}
-                        disabled
-                    />
-                </div>
-                <div className='flex flex-col gap-4'>
-                    <label className='font-bold'>Senha *</label>
-                    <div className='flex flex-row w-full items-center bg-slate-200 border-2 focus-within:border-[#ab92bf] focus-within:text-[#ab92bf] rounded-md'>
-                        <input
-                            className='w-full outline-none text-black bg-slate-200 p-2 rounded-md'
-                            type={showPassword ? 'text' : 'password'}
-                            placeholder="Senha"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            style={{ WebkitAppearance: "none", MozAppearance: "none", appearance: "none" }} 
-                        />
-                        {
-                            showPassword ?
-                                <BsEye size={22} className='mr-5 cursor-pointer' onClick={() => setShowPassword(false)} />
-                                :
-                                <BsEyeSlash size={22} className='mr-5 cursor-pointer' onClick={() => setShowPassword(true)} />
-                        }
+return (
+    <form onSubmit={handleUpdateUser} className="flex flex-col px-8 md:px-32 gap-5 mt-10 w-full">
+        <div className='flex flex-col lg:grid lg:grid-cols-2 gap-4 mb-10'>
+            <div className='flex flex-col gap-4 justify-center items-center col-span-2'>
+                <section className='flex flex-row rounded-3xl h-full px-2 py-4 gap-10 '>
+                    <div className='w-32 h-32 bg-white rounded-full relative flex items-center justify-center'>
+                        {profilePicUrl ? (
+                            <img
+                                src={profilePicUrl}
+                                alt="Perfil"
+                                className="absolute inset-0 w-full h-full rounded-full object-cover"
+                            />
+                        ) : (
+                            <img
+                                src={blank}
+                                alt="Perfil"
+                                className="absolute inset-0 w-full h-full rounded-full object-cover"
+                            />
+                        )}
+                        <label className="absolute left-24 top-20 bg-[#ab92bf] z-10 rounded-full p-2 font-bold text-white hover:bg-[#655a7c] cursor-pointer">
+                            <TbUpload size={20} className="z-10" />
+                            <input
+                                type="file"
+                                accept="image/*"
+                                className="hidden z-10"
+                                onChange={handleImageUpload}
+                            />
+                        </label>
                     </div>
-                </div>
-                <div className='flex flex-col gap-4'>
-                    <label className='font-bold'>Repita sua senha *</label>
-                    <div className='flex flex-row w-full items-center bg-slate-200 border-2 focus-within:border-[#ab92bf] focus-within:text-[#ab92bf] rounded-md'>
-                        <input
-                            className='w-full outline-none text-black bg-slate-200 p-2 rounded-md'
-                            type={showPasswordRepite ? 'text' : 'password'}
-                            placeholder="Repita sua senha"
-                            value={passwordRepite}
-                            onChange={(e) => setPasswordRepite(e.target.value)}
-                            style={{ WebkitAppearance: "none", MozAppearance: "none", appearance: "none" }} 
-                        />
-                        {
-                            showPasswordRepite ?
-                                <BsEye size={22} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(false)} />
-                                :
-                                <BsEyeSlash size={22} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(true)} />
-                        }
-                    </div>
-                </div>
-            </div>
-            <div className='flex flex-col items-center justify-center font-semibold relative lg:col-span-2'>
-                    <p>Total de tarefas concluidas!</p>
-                    <CircularProgress progress={completedPercentage} stroke={10} radius={100} />
-                    <img src={images[imageIndex]} alt={`Progresso: ${completedPercentage}%`} width={70} className="absolute" />
-            </div>
-            <div className="flex justify-center">
-                <button
-                    type='submit'
-                    disabled={loading}
-                    className={`w-full md:max-w-[200px] flex items-center justify-center mt-5 bg-[#ab92bf] rounded-md p-2 font-bold text-white hover:bg-[#655a7c] ${loading && 'cursor-not-allowed bg-[#655a7c]'}`}
-                >
-                    {loading ? (
-                   
-                        <div className="animate-spin text-light mr-3">
-                            <BsArrowClockwise size={20} />
-                        </div>
-                    ) : (
-                        'Salvar'
-                    )}
-                </button>
-            </div>
-            {errorMessage && <p className='text-[#655a7c] font-semibold text-lg text-center animate-pulse'>{errorMessage}</p>}
 
-        </form>
-    );
+                </section>
+            </div>
+            <div className='flex flex-col gap-4'>
+                <label className='font-bold'>Nome*</label>
+                <input
+                    className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md w-full'
+                    type="text"
+                    placeholder="Nome"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    maxLength={20}
+                    required
+                />
+            </div>
+            <div className='flex flex-col gap-4'>
+                <label className='font-bold'>Sobrenome*</label>
+                <input
+                    className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md w-full'
+                    type="text"
+                    placeholder="Sobrenome"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    maxLength={20}
+                    required
+                />
+            </div>
+            <div className='flex flex-col gap-4 col-span-1 lg:col-span-2'>
+                <label className='font-bold'>Email*</label>
+                <input
+                    className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md w-full cursor-not-allowed'
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    maxLength={20}
+                    disabled
+                />
+            </div>
+            <div className='flex flex-col gap-4'>
+                <label className='font-bold'>Senha *</label>
+                <div className='flex flex-row w-full items-center bg-slate-200 border-2 focus-within:border-[#ab92bf] focus-within:text-[#ab92bf] rounded-md'>
+                    <input
+                        className='w-full outline-none text-black bg-slate-200 p-2 rounded-md'
+                        type={showPassword ? 'text' : 'password'}
+                        placeholder="Senha"
+                        value={password}
+                        maxLength={20}
+                        onChange={(e) => setPassword(e.target.value)}
+                        style={{ WebkitAppearance: "none", MozAppearance: "none", appearance: "none" }} 
+                    />
+                    {
+                        showPassword ?
+                            <BsEye size={22} className='mr-5 cursor-pointer' onClick={() => setShowPassword(false)} />
+                            :
+                            <BsEyeSlash size={22} className='mr-5 cursor-pointer' onClick={() => setShowPassword(true)} />
+                    }
+                </div>
+            </div>
+            <div className='flex flex-col gap-4'>
+                <label className='font-bold'>Repita sua senha *</label>
+                <div className='flex flex-row w-full items-center bg-slate-200 border-2 focus-within:border-[#ab92bf] focus-within:text-[#ab92bf] rounded-md'>
+                    <input
+                        className='w-full outline-none text-black bg-slate-200 p-2 rounded-md'
+                        type={showPasswordRepite ? 'text' : 'password'}
+                        placeholder="Repita sua senha"
+                        value={passwordRepite}
+                        maxLength={20}
+                        onChange={(e) => setPasswordRepite(e.target.value)}
+                        style={{ WebkitAppearance: "none", MozAppearance: "none", appearance: "none" }} 
+                    />
+                    {
+                        showPasswordRepite ?
+                            <BsEye size={22} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(false)} />
+                            :
+                            <BsEyeSlash size={22} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(true)} />
+                    }
+                </div>
+            </div>
+        </div>
+        <div className='flex flex-col items-center justify-center font-semibold relative lg:col-span-2'>
+                <p>Total de tarefas concluidas!</p>
+                <CircularProgress progress={completedPercentage} stroke={10} radius={100} />
+                <img src={images[imageIndex]} alt={`Progresso: ${completedPercentage}%`} width={70} className="absolute" />
+        </div>
+        <div className="flex justify-center">
+            <button
+                type='submit'
+                disabled={loading}
+                className={`w-full md:max-w-[200px] flex items-center justify-center mt-5 bg-[#ab92bf] rounded-md p-2 font-bold text-white hover:bg-[#655a7c] ${loading && 'cursor-not-allowed bg-[#655a7c]'}`}
+            >
+                {loading ? (
+                
+                    <div className="animate-spin text-light mr-3">
+                        <BsArrowClockwise size={20} />
+                    </div>
+                ) : (
+                    'Salvar'
+                )}
+            </button>
+        </div>
+        {errorMessage && <p className='text-[#655a7c] font-semibold text-lg text-center animate-pulse'>{errorMessage}</p>}
+
+    </form>
+);
 }

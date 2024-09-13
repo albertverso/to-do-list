@@ -61,7 +61,7 @@ export default function CreateTask() {
 
     return (
         <form onSubmit={handleCreateTask} className="flex flex-col px-8 md:px-32 gap-5 mt-10 w-full">
-            <div className='flex flex-col gap-4 mb-10'>
+            <div className='flex flex-col gap-4'>
                 <div className='flex flex-col gap-4'>
                     <label className='font-bold'>Título *</label>
                     <input
@@ -123,7 +123,7 @@ export default function CreateTask() {
                 <button
                     type='submit'
                     disabled={loading}
-                    className={`w-full md:max-w-[200px] flex items-center justify-center mt-5 bg-[#ab92bf] rounded-md p-2 font-bold text-white hover:bg-[#655a7c] ${loading && 'cursor-not-allowed bg-[#655a7c]'}`}
+                    className={`w-full md:max-w-[200px] flex items-center justify-center bg-[#ab92bf] rounded-md p-2 font-bold text-white hover:bg-[#655a7c] ${loading && 'cursor-not-allowed bg-[#655a7c]'}`}
                 >
                     {loading ? (
                         <div className="animate-spin text-light mr-3">

@@ -8,7 +8,7 @@ export default function Favorites() {
 
     const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('');
    
     const token = localStorage.getItem('token');
     const userId = decodedFromToken()
@@ -19,7 +19,7 @@ export default function Favorites() {
                 const taskData = await getFavoriteTask(userId, token);
                 setTasks(taskData);
             } catch (error) {
-                setError('Erro ao buscar tarefas');
+                setErrorMessage('Nenhuma tarefa favoritada');
             } finally {
                 setLoading(false);
             }
@@ -53,7 +53,7 @@ export default function Favorites() {
     
 
     if (loading) return SkeletonLoading()
-    if (error) return <div>Erro: {error}</div>;
+    if (errorMessage) return <div className='mt-5 text-[#655a7c] text-lg font-semibold text-center'>{errorMessage}</div>;
 
     return (
         <div>
