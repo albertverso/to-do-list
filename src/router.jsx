@@ -27,7 +27,7 @@ export default function AppRouter() {
       }
 
     return (
-        <>
+        <div className="dark:bg-[#190028] h-full pb-8">
             <ScrollToTopOnRouteChange/>
             {!hideHeaderFooter && <Header />}
             <Routes>
@@ -96,6 +96,6 @@ export default function AppRouter() {
                 />
             </Routes>
             {!hideHeaderFooter && <Footer/>}
-        </>
+        </div>
     )
 }

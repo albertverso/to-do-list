@@ -53,7 +53,7 @@ export default function Favorites() {
     
 
     if (loading) return SkeletonLoading()
-    if (errorMessage) return <div className='mt-5 text-[#655a7c] text-lg font-semibold text-center'>{errorMessage}</div>;
+    if (errorMessage) return <div className='mt-5 text-[#655a7c] dark:text-white text-lg font-semibold text-center'>{errorMessage}</div>;
 
     return (
         <div>

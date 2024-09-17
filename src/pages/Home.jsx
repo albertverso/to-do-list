@@ -63,8 +63,8 @@ export default function Home() {
    
 
     return (
-        <div>
-            { errorMessage && <div className='mt-5 text-[#655a7c] text-lg font-semibold text-center'>{errorMessage}</div>}
+        <div className='dark:bg-[#190028]'>
+            { errorMessage && <div className='mt-5 text-[#655a7c] dark:text-white text-lg font-semibold text-center'>{errorMessage}</div>}
             <section className='px-8 md:px-32 gap-5 mt-10 justify-items-center grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 mb-10'>
             {tasks.map(task => {
                     const percentage = calculateCompletionPercentage(task.id); // Calculando a porcentagem para cada task

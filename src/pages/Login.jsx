@@ -145,18 +145,18 @@ export default function Login() {
     };
 
     return (
-        <body class="flex items-center justify-center min-h-screen max-md:bg-gradiente-login overflow-hidden lg:bg-white">
-            <div className="w-10/12 h-full p-5 bg-white hidden xl:flex">
+        <body class="flex items-center justify-center min-h-screen max-md:bg-gradiente-login overflow-hidden lg:bg-white dark:bg-[#190028]">
+            <div className="w-10/12 h-full p-5 bg-white dark:bg-[#11001C] hidden xl:flex">
                 {/* <img className="w-full h-full rounded-[40px] p-5" src={image} alt="" /> */}
                 < Cover />
             </div>
-            <div class="xl:w-3/12 pt-10 lg:mt-0 h-full flex flex-col items-center lg:pt-2 break-normal mb-5 lg:mb-0" >
+            <div class="xl:w-3/12 pt-10 lg:mt-0 h-full flex flex-col items-center lg:pt-2 break-normal mb-5 lg:mb-0 dark:bg-[#]" >
                 {!isSighUp &&
                     <div className='flex items-center mb-2'>
                         <img src={icon} alt="" width={70} />
                     </div>
                 }
-                <div className='flex flex-col items-center justify-center gap-2'>
+                <div className='flex flex-col items-center justify-center gap-2 dark:text-white'>
                     <p className='text-3xl font-bold'>{!isSighUp ? 'Acesse sua conta' : 'Crie sua conta'}</p>
                     <p>{!isSighUp ? 'Novo cliente? Então registre-se' : 'Já possui uma conta? Entre'} <a onClick={() => setIsSighUp(!isSighUp)} className=' underline cursor-pointer' >aqui.</a></p>
                 </div>
@@ -191,7 +191,7 @@ export default function Login() {
                                     </div>
                                 </section>
                                 <div className='flex flex-col gap-2'>
-                                    <label className='font-bold'>Nome *</label>
+                                    <label className='font-bold dark:text-white'>Nome *</label>
                                     <input
                                         className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md'
                                         type="text"
@@ -202,7 +202,7 @@ export default function Login() {
                                     />
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <label className='font-bold'>Email *</label>
+                                    <label className='font-bold dark:text-white'>Email *</label>
                                     <input
                                         className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md'
                                         type="email"
@@ -213,7 +213,7 @@ export default function Login() {
                                     />
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <label className='font-bold'>Senha *</label>
+                                    <label className='font-bold dark:text-white'>Senha *</label>
                                     <div className='flex flex-row w-full items-center bg-slate-200 border-2 focus-within:border-[#ab92bf] focus-within:text-[#ab92bf] rounded-md'>
                                         <input
                                             className='w-full outline-none text-black bg-slate-200 p-2 rounded-md'
@@ -234,7 +234,7 @@ export default function Login() {
                                     </div>
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <label className='font-bold'>Repita sua senha *</label>
+                                    <label className='font-bold dark:text-white'>Repita sua senha *</label>
                                     <div className='flex flex-row w-full items-center bg-slate-200 border-2 focus-within:border-[#ab92bf] focus-within:text-[#ab92bf] rounded-md'>
                                         <input
                                             className='w-full outline-none text-black bg-slate-200 p-2 rounded-md'
@@ -274,7 +274,7 @@ export default function Login() {
                         <form onSubmit={handleLogin}>
                             <div className='flex flex-col gap-4 mb-5'>
                                 <div className='flex flex-col gap-2'>
-                                    <label className='font-bold'>Login *</label>
+                                    <label className='font-bold dark:text-white'>Login *</label>
                                     <input
                                         className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md'
                                         type="email"
@@ -285,7 +285,7 @@ export default function Login() {
                                     />
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <label className='font-bold'>Senha *</label>
+                                    <label className='font-bold dark:text-white'>Senha *</label>
                                     <div className='flex flex-row w-full items-center bg-slate-200 border-2 focus-within:border-[#ab92bf] focus-within:text-[#ab92bf] rounded-md'>
                                         <input
                                             className='w-full outline-none text-black bg-slate-200 p-2 rounded-md'
@@ -305,7 +305,7 @@ export default function Login() {
                                     </div>
                                 </div>
                             </div>
-                            <a href="" className='underline hover:text-[#ab92bf]'>Esqueci minha senha</a>
+                            <a href="" className='underline dark:text-white hover:text-[#ab92bf]'>Esqueci minha senha</a>
                             <button
                                 type='submit'
                                 disabled={loading}

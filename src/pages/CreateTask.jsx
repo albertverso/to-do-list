@@ -63,7 +63,7 @@ export default function CreateTask() {
         <form onSubmit={handleCreateTask} className="flex flex-col px-8 md:px-32 gap-5 mt-10 w-full">
             <div className='flex flex-col gap-4'>
                 <div className='flex flex-col gap-4'>
-                    <label className='font-bold'>Título *</label>
+                    <label className='font-bold dark:text-white '>Título *</label>
                     <input
                         className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md w-full'
                         type="text"
@@ -75,7 +75,7 @@ export default function CreateTask() {
                     />
                 </div>
                 <div className='flex flex-col gap-4'>
-                    <label className='font-bold'>Descrição *</label>
+                    <label className='font-bold dark:text-white '>Descrição *</label>
                     <textarea
                         className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md w-full'
                         placeholder="Descrição"
@@ -86,7 +86,7 @@ export default function CreateTask() {
                     />
                 </div>
                 <div className='flex flex-col gap-4'>
-                    <label className='font-bold'>Itens da tarefa *</label>
+                    <label className='font-bold dark:text-white '>Itens da tarefa *</label>
                     {itemTasks.map((itemTask, index) => (
                         <div key={index} className="flex flex-row items-center">
                             <input

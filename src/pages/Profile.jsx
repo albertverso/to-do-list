@@ -165,7 +165,7 @@ return (
                 </section>
             </div>
             <div className='flex flex-col gap-4'>
-                <label className='font-bold'>Nome*</label>
+                <label className='font-bold dark:text-white '>Nome*</label>
                 <input
                     className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md w-full'
                     type="text"
@@ -177,7 +177,7 @@ return (
                 />
             </div>
             <div className='flex flex-col gap-4'>
-                <label className='font-bold'>Sobrenome*</label>
+                <label className='font-bold dark:text-white '>Sobrenome*</label>
                 <input
                     className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md w-full'
                     type="text"
@@ -189,7 +189,7 @@ return (
                 />
             </div>
             <div className='flex flex-col gap-4 col-span-1 lg:col-span-2'>
-                <label className='font-bold'>Email*</label>
+                <label className='font-bold dark:text-white '>Email*</label>
                 <input
                     className='focus:outline-[#ab92bf] text-black bg-slate-200 p-2 rounded-md w-full cursor-not-allowed'
                     type="email"
@@ -201,7 +201,7 @@ return (
                 />
             </div>
             <div className='flex flex-col gap-4'>
-                <label className='font-bold'>Senha *</label>
+                <label className='font-bold dark:text-white '>Senha *</label>
                 <div className='flex flex-row w-full items-center bg-slate-200 border-2 focus-within:border-[#ab92bf] focus-within:text-[#ab92bf] rounded-md'>
                     <input
                         className='w-full outline-none text-black bg-slate-200 p-2 rounded-md'
@@ -221,7 +221,7 @@ return (
                 </div>
             </div>
             <div className='flex flex-col gap-4'>
-                <label className='font-bold'>Repita sua senha *</label>
+                <label className='font-bold dark:text-white '>Repita sua senha *</label>
                 <div className='flex flex-row w-full items-center bg-slate-200 border-2 focus-within:border-[#ab92bf] focus-within:text-[#ab92bf] rounded-md'>
                     <input
                         className='w-full outline-none text-black bg-slate-200 p-2 rounded-md'
@@ -241,7 +241,7 @@ return (
                 </div>
             </div>
         </div>
-        <div className='flex flex-col items-center justify-center font-semibold relative lg:col-span-2'>
+        <div className='flex flex-col items-center justify-center font-semibold relative lg:col-span-2 dark:text-white '>
                 <p>Total de tarefas concluidas!</p>
                 <CircularProgress progress={completedPercentage} stroke={10} radius={100} />
                 <img src={images[imageIndex]} alt={`Progresso: ${completedPercentage}%`} width={70} className="absolute" />
