@@ -8,7 +8,7 @@ import { ReactTyped } from 'react-typed';
 
 export default function Cover() {
     return(
-        <div className="flex flex-row bg-[#b8adcf] w-full h-full rounded-[40px] p-5 justify-center gap-20 overflow-hidden">
+        <div className="flex flex-row bg-[#b8adcf]  w-full h-full rounded-[40px] p-5 justify-center gap-20 overflow-hidden">
             <div className="flex flex-col items-center justify-center gap-10">
                 <div>
                 <   img src={cover2} alt="" width={300} />

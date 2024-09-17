@@ -4,7 +4,7 @@ import { SiGithub, SiInstagram, SiLinkedin } from 'react-icons/si';
 
 export default function Footer() {
     return (
-        <footer className='mx-8 md:mx-32 mb-5 gap-5 mt-10 flex flex-col p-10 rounded-3xl bg-[#ab92bf]'>
+        <footer className='mx-8 md:mx-32 pb-5 gap-5 mt-10 flex flex-col p-10 rounded-3xl bg-[#ab92bf]'>
             <div className='gap-5 lg:gap-0  grid grid-cols-1 lg:grid-cols-3 justify-items-center font-semibold'>
                 <div className='break-words p-5 flex flex-col items-center'>
                     <img src={icon} alt="" width={30} className='mx-auto' />

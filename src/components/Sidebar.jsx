@@ -66,13 +66,13 @@ const Sidebar = () => {
   };
 
   return (
-    <>
+    <div className=''>
       {/* Botão para abrir/fechar a Sidebar */}
       <button
         onClick={() => {toggleSidebar(), scrollToTop()}}
         className="fixed top-10 left-10 z-50 outline-none"
       >
-        {isOpen ? <TfiAngleDoubleRight className='hover:text-[#ab92bf]' size={24} /> : <TfiMenu className='hover:text-[#ab92bf]' size={24} />}
+        {isOpen ? <TfiAngleDoubleRight className='hover:text-[#ab92bf] dark:text-[#655a7c] dark:hover:text-[#ab92bf]' size={24} /> : <TfiMenu className='hover:text-[#ab92bf] dark:text-[#655a7c] dark:hover:text-[#ab92bf]' size={24} />}
       </button>
 
       {/* Sidebar */}
@@ -104,7 +104,7 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
