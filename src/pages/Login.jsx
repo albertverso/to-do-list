@@ -146,7 +146,7 @@ export default function Login() {
 
     return (
         <body class="flex items-center justify-center min-h-screen max-md:bg-gradiente-login overflow-hidden lg:bg-white dark:bg-[#190028]">
-            <div className="w-10/12 h-full p-5 bg-white dark:bg-[#11001C] hidden xl:flex">
+            <div className="w-10/12 h-full p-5 bg-white dark:bg-[#190028] hidden xl:flex">
                 {/* <img className="w-full h-full rounded-[40px] p-5" src={image} alt="" /> */}
                 < Cover />
             </div>
