@@ -49,7 +49,7 @@ export default function AppRouter() {
             <div className="dark:bg-[#190028] h-full pb-8">        
                 <div className="flex flex-col items-center justify-center h-screen">
                     <img src={animation} alt="" width={200} />    
-                    <div className="flex flex-col items-center justify-center font-semibold text-2xl text-white gap-2">
+                    <div className="flex flex-col items-center justify-center font-semibold text-2xl dark:text-white  text-[#655a7c] gap-2">
                         <p>Carregando</p>
                         <RiLoopRightFill className="animate-spin" size={24} />
                         <p>Por favor, aguarde...</p>
