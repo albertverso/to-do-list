@@ -58,22 +58,7 @@ export const isTokenExpired = () => {
 };
 
 export const getWakeUp = async () => {
-  try {
-    const response = await fetch(`${apiUrl}/`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
-    // Verifique se a resposta foi bem-sucedida
-    if (!response.ok) {
-      throw new Error('Erro ao chamar a API'); // Mensagem de erro mais específica
-    }
-
-    const data = await response.text();
-    return data; // Retorna o resultado, que deve ser um JSON, certifique-se de que é uma string
-  } catch (error) {
-    throw error; // Re-lança o erro para tratamento posterior
-  }
+  const response = await fetch(`${apiUrl}/`)
+  
+  return response
 };
