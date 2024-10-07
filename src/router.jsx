@@ -33,7 +33,6 @@ export default function AppRouter() {
         const wakeUpApi = async () => {
             const response = await getWakeUp();
             if (response.status === 200) {
-                console.log(response);
                 setLoading(false); // Quando a API responder, o loading é desativado
             }
         };

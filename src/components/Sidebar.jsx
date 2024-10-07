@@ -28,13 +28,8 @@ const Sidebar = () => {
   useEffect(() => {
 
     const fetchUser = async () => {
-      try {
-          const userData = await getUser(userId, token);
-          setUser(userData);
-      } catch (error) {
-          setError('Erro ao buscar tarefas');
-      } finally {
-      }
+      const userData = await getUser(userId, token);
+      setUser(userData);
     };
 
     if (isOpen) {
