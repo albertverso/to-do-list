@@ -11,4 +11,8 @@
   .bg-gradiente-login {
     background: linear-gradient(-30deg, rgba(255, 255, 255) 20%, rgba(171, 146, 191) 70%);
   }
+
+  .bg-gradiente-login-dark {
+    background: linear-gradient(-30deg, rgba(255, 255, 255) 5%, rgba(25, 0, 40) 40%);
+  }
 }
