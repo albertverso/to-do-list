@@ -4,7 +4,7 @@ import { SiGithub, SiInstagram, SiLinkedin } from 'react-icons/si';
 
 export default function Footer() {
     return (
-        <div className='pb-0 lg:pb-8'>
+        <div className='pb-8'>
             <footer className='mx-8 md:mx-32 gap-5 mt-10 flex flex-col p-10 rounded-3xl bg-[#ab92bf]'>
                 <div className='gap-5 lg:gap-0 grid grid-cols-1 lg:grid-cols-3 justify-items-center font-semibold'>
                     <div className='break-words p-5 flex flex-col items-center'>
@@ -14,11 +14,11 @@ export default function Footer() {
                         </p>
                     </div>
                     <div className='border-[#AFC1D6] border-t-2 border-b-2 lg:border-b-0 lg:border-t-0 lg:border-r-2 lg:border-l-2 pb-8 w-full md:px-20 xl:px-40'>
-                        <div class="flex flex-col font-semibold items-center justify-center mt-10 gap-3">
-                            <Link to={"/Home"} class="hover:text-gray-400">Home</Link>
-                            <Link to={"/Profile"} class="hover:text-[#AFC1D6]">Perfil</Link>
-                            <Link to={"/Criar-Tarefas"} class="hover:text-[#AFC1D6]">Criar tarefa</Link>
-                            <Link to={"/Favoritos"} class="hover:text-[#AFC1D6]">Favoritos</Link>
+                        <div className="flex flex-col font-semibold items-center justify-center mt-10 gap-3">
+                            <Link to={"/Home"} className="hover:text-gray-400">Home</Link>
+                            <Link to={"/Profile"} className="hover:text-[#AFC1D6]">Perfil</Link>
+                            <Link to={"/Criar-Tarefas"} className="hover:text-[#AFC1D6]">Criar tarefa</Link>
+                            <Link to={"/Favoritos"} className="hover:text-[#AFC1D6]">Favoritos</Link>
                         </div>
                     </div>
                     <div className='flex flex-row items-center gap-8'>
@@ -35,7 +35,7 @@ export default function Footer() {
                 </div>
 
                 <div className='flex text-center justify-center font-semibold'>
-                    <p class="mt-6">&copy; 2024 Todo List App. Criado por Albertverso.</p>
+                    <p className="mt-6">&copy; 2024 Todo List App. Criado por Albertverso.</p>
                 </div>
             </footer>
         </div>
