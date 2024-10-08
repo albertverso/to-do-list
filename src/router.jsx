@@ -42,7 +42,7 @@ export default function AppRouter() {
 
     return (
         
-        <div className="dark:bg-[#190028] bg-[#ab92bf] h-full">  
+        <div className="dark:bg-[#190028] bg-white h-full">  
             
             {loading ? 
             <div>        
