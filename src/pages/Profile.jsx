@@ -234,9 +234,9 @@ return (
                     />
                     {
                         showPasswordRepite ?
-                            <BsEye size={22} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(false)} />
+                            <BsEye size={24} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(false)} />
                             :
-                            <BsEyeSlash size={22} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(true)} />
+                            <BsEyeSlash size={24} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(true)} />
                     }
                 </div>
             </div>
