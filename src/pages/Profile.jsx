@@ -234,9 +234,9 @@ return (
                     />
                     {
                         showPasswordRepite ?
-                            <BsEye size={24} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(false)} />
+                            <BsEye size={22} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(false)} />
                             :
-                            <BsEyeSlash size={24} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(true)} />
+                            <BsEyeSlash size={22} className='mr-5 cursor-pointer' onClick={() => setShowPasswordRepite(true)} />
                     }
                 </div>
             </div>
@@ -255,7 +255,7 @@ return (
                 {loading ? (
                 
                     <div className="animate-spin text-light mr-3">
-                        <BsArrowClockwise size={20} />
+                        <BsArrowClockwise size={24} />
                     </div>
                 ) : (
                     'Salvar'
