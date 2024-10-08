@@ -313,7 +313,7 @@ export default function Login() {
                             >
                                 {loading ? (
                                     <div className="flex items-center justify-center">
-                                        <BsArrowClockwise className="animate-spin" size={20} />
+                                        <BsArrowClockwise className="animate-spin w-[105px]" size={24} />
                                     </div>
                                 ) : (
                                     'Acessar Conta'
