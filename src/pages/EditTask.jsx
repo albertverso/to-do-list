@@ -205,7 +205,7 @@ export default function EditTask() {
                     {loading ? (
                         
                         <div className="animate-spin text-light mr-3">
-                            <BsArrowClockwise size={20}/>
+                            <BsArrowClockwise size={24}/>
                         </div>
                        
                     ) : (
