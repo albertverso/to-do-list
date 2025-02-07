@@ -42,10 +42,9 @@ export default function AppRouter() {
 
     return (
         
-        <div className="dark:bg-[#190028] bg-white h-full">  
-            
+        <div className="dark:bg-[#190028] bg-white flex flex-col min-h-screen">  
             {loading ? 
-            <div>        
+            <div className="flex-grow w-full">        
                 <div className="flex flex-col items-center justify-center h-screen">
                     <img src={animation} alt="" width={200} />    
                     <div className="flex flex-col items-center justify-center font-semibold text-2xl dark:text-white  text-[#655a7c] gap-2">
@@ -56,7 +55,7 @@ export default function AppRouter() {
                 </div>
             </div>
             :     
-            <div>
+            <div className="flex-grow w-full">
                 <ScrollToTopOnRouteChange/>
                 {!hideHeaderFooter && <Header />}
                 <Routes>
@@ -127,8 +126,6 @@ export default function AppRouter() {
                 {!hideHeaderFooter && <Footer/>}
             </div>
             }
-        
-        
         </div>
 
 
