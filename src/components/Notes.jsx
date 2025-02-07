@@ -46,7 +46,7 @@ export default function Notes({favorite, description, title, createdAt, progress
     }, [id, progress]); // Executa quando taskId ou progress mudar
 
     return (
-        <div className="flex flex-col rounded-2xl bg-[#ab92bf] w-full min-h-96 p-8 overflow-hidden hover:shadow-2xl hover:scale-105 transition-transform duration-600">
+        <div id="task" className="flex flex-col rounded-2xl bg-[#ab92bf] w-full min-h-96 p-8 overflow-hidden hover:shadow-2xl hover:scale-105 transition-transform duration-600">
             <div className="flex flex-row items-center justify-between">
                 <div className={`text-2xl font-semibold ${progress === 100 && 'line-through'}`}> {title} </div>
                 <button className="outline-none hover:text-[#AFC1D6]" onClick={handleFavoriteClick}>
