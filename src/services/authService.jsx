@@ -12,15 +12,14 @@ export const authLogin = async (email, password) => {
     });
 
     const data = await response.json();
-
     if (response.status === 200) {
       // Armazene o token no localStorage
       localStorage.setItem('token', data.token);
       return data;
-    } else if (response.status === 404) {
-      throw new Error(response.message || 'Usuário não existe!');
-    } else if (response.status === 401) {
-      throw new Error(response.message || 'Usuário ou senha incorreta! Tente novamente');
+    }
+    else {
+      // Lida com outros erros (como 500)
+      throw new Error (data.message || 'Erro desconhecido, tente novamente mais tarde.');
     }
   } catch (error) {
     throw error;

@@ -33,14 +33,17 @@ export default function Login() {
         setLoading(true);
         setErrorMessage('');
         try {
-            await authLogin(email, password);
+            const data = await authLogin(email, password);
             if (isAuthenticated) {
                 navigate('/Home');
-            } else {
-                setErrorMessage("Usuário ou senha incorretos!");
             }
         } catch (error) {
-            setErrorMessage("Erro!");
+            // Exibe a mensagem de erro retornada pelo backend
+            if (error.message) {
+                setErrorMessage(error.message); // Mensagem tratada do backend
+            } else {
+                setErrorMessage("Erro ao tentar autenticar!"); // Caso não haja uma mensagem
+            }
         } finally {
             setLoading(false);
         }
